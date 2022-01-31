@@ -255,7 +255,7 @@ Note you can use the same API Key and Secret as your did for your Cloud IDE if y
  
  Assuming VS-Code, edit the \~/.bashrc file using
  
-     $ code \~/.bashrc
+     $ code ~/.bashrc
  
  Once the file loads, around line 60 change the line that reads
  
@@ -274,7 +274,7 @@ Note you can use the same API Key and Secret as your did for your Cloud IDE if y
  
  After saving the file, you can load the results using
  
-     $ source \~/.bashrc
+     $ source ~/.bashrc
  
 #### Configure GIT
  
