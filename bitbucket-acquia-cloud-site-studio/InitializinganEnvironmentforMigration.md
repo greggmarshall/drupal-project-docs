@@ -6,7 +6,7 @@
 
 2.  The remainder of the steps are a series of Drush commands using Drush aliases. The Drush aliases for the project are of the form @project.environment where environment is dev, stage, prod. The following steps show the Drush alias for the prod environment.
 
-
+````
     drush @project.prod site-install minimal install_configure_form.enable_update_status_module=NULL --sites-subdir=default --site-name='Project Company' --site-mail=site_email@project.com -- account-name=do.not.use --account-mail=shared.email@project.com -- locale=en --no-interaction -v --ansi
     drush @project.prod config:set system.site uuid 9fc2dc41-3dac-4ad7-924c-e0c7dcc31b0b --no-interaction -v --ansi
     drush @project.prod pm-enable config_split --no-interaction -v -- ansi
@@ -24,5 +24,6 @@
     .
     .
     drush @project.prod user:block do.not.use
+````
 
 © 2020-2021. This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).

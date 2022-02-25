@@ -140,56 +140,68 @@ The DDEV documentation is at <https://ddev.readthedocs.io/en/stable/>
  
 * **PHP 7.4**
  
+````
      $ sudo apt-get update
      $ sudo apt install php7.4-cli
      $ sudo apt-get install php7.4-curl sudo apt-get install php7.4-mbstring sudo apt-get install php7.4-dom
      $ sudo apt-get install php7.4-xmlwriter sudo apt-get install php7.4-zip
      $ sudo apt-get install php7.4-simplexml sudo apt-get install php7.4-gd
      $ php --version
- 
+ ````
+
  * **Composer 2**
  
  Installed with PHP 7.4(?). Verify that with the command `composer --version
- `
+ 
  If the version starts with 1.x.x then update to Composer 2 using composer update, if composer isn’t found see [http://getcomposer.org](http://getcomposer.org/) for installation instructions on Ubuntu.
  
 * **NodeJS**
  
+````
     $ sudo apt install nodejs sudo apt install npm node -v
     $ npm -v
- 
+````
+
 * **YARN**
  
+````
     $ sudo apt install cmdtest
- 
+````
+
 * **Zip and Unzip**
- 
+
+````
     $ sudo apt install zip unzip php-zip
- 
+````
+
 * **ACLI (Acquia Command Line Interface)**
- 
+
+````
     $ curl -OL https://github.com/acquia/cli/releases/latest/download/acli. phar
     $ chmod +x acli.phar
     $ sudo mv acli.phar /usr/local/bin/acli acli --version
- 
+````
+
  To begin using [Acquia CLI](https://github.com/acquia/cli), authenticate against your Cloud Platform account by using acli auth:login. This command prompts you to open the page from which to create a [Cloud Platform API token](https://docs.acquia.com/cloud-platform/develop/api/auth/#cloud-generate-api-token)  at [https://cloud.acquia.com/a/profile/tokens](https://cloud.acquia.com/a/profile/tokens) for convenience.
  
  **Copy and save the API key & API secret in notepad and save the file where you can reference it.**
  
  Here’s an example output:
 
+````
     $ acli auth:login
     You will need a Cloud Platform API token from https://cloud.acquia.com/a/profile/tokens
     Do you want to open this page to generate a token now? y 
     Please enter your API Key: <ENTER API KEY HERE>
     Please enter your API Secret: <ENTER API SECRET HERE> 
     Saved credentials to /home/<user>/.acquia/cloud_api.conf
- 
+````
+
 <div class="notice">
 Note you can use the same API Key and Secret as your did for your Cloud IDE if you saved them.
 </div>
  
- It appears there may be an issue using ACLI from inside Ubuntu. Despite successfully logging in with the “acli auth:login” command above, trying to use any ACLI command that accesses Acquia gives a “Your Cloud Platform API credentials are invalid. Run acli auth: login to reset them.” error. There are work arounds for most of the issues.
+ It appears there may be an issue using ACLI from inside Ubuntu. Despite successfully logging in with the `acli auth:login` command above, trying to use any ACLI command that accesses Acquia gives a “Your Cloud Platform API credentials are invalid. Run acli auth: login to reset them.” error. There are work arounds for most of the issues.
  
 ### Install VS-Code on Windows
  
@@ -240,6 +252,7 @@ Note you can use the same API Key and Secret as your did for your Cloud IDE if y
  
  Instead, use the Acquia Cloud UI to upload your SSH keys manually. See <https://docs.acquia.com/cloud-platform/manage/ssh/enable/add-key/> for detailed instructions how to upload your SSH public key to your Acquia Cloud account. To verify you have access, try the SSH command from the Ubuntu command line:
  
+````
      $ ssh project.dev@projectdev.ssh.prod.acquia-sites.com
      The authenticity of host 'projectdev.ssh.prod.acquia-sites.com (54.188.28.88)' can't be established.
      RSA key fingerprint is SHA256: htZXJDCRcqD+7VAF3j9fH95yaNrPmq4Oip+ZTv9zTL4.
@@ -248,7 +261,8 @@ Note you can use the same API Key and Secret as your did for your Cloud IDE if y
      Welcome to Acquia Cloud. For information about shell access on this server, please see: https://docs.acquia.com/acquia-cloud/ssh
      Usage may be monitored and audited. 
      project@staging-39761:\~$ ls -la
- 
+ ````
+
  #### Configure Bash Prompt (optional)
  
  The default bash prompt shows the host computer username and computer ID followed by the current path. If you’d rather have the path and the current branch if inside a git repository, you can make the following changes:
@@ -259,19 +273,21 @@ Note you can use the same API Key and Secret as your did for your Cloud IDE if y
  
  Once the file loads, around line 60 change the line that reads
  
-    PS1='${debian_chroot:+($debian_chroot)}[\033[01;32m\]\u@\h\[\033\[00m\]:\[\033\[01;34m\]\w\[\033\[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
  
  With the line
  
-    PS1='\[\033\[01;34m\]\w \[\e\[91m\]`parse_git_branch` \[\e\[00m\]$ '
+    PS1='\[\033[01;34m\]\w \[\e[91m\]`parse_git_branch` \[\e[00m\]$ '
  
  Then about line 4 insert the following
  
-     \# get current git branch if inside a git repository 
+````
+     # get current git branch if inside a git repository 
      parse_git_branch() {
-       git branch 2\> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\/(\1)/'
+       git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/''
      }
- 
+ ````
+
  After saving the file, you can load the results using
  
      $ source \~/.bashrc
@@ -302,7 +318,7 @@ Note you can use the same API Key and Secret as your did for your Cloud IDE if y
 
 4.  Switch to your Ubuntu terminal window and in the terminal type
 
-
+````
      $ ls -la ~/.ssh
      total 24
      drwxr-xr-x 2 ide ide 4096 Dec 9 19:33 .
@@ -324,7 +340,7 @@ Note you can use the same API Key and Secret as your did for your Cloud IDE if y
      /W0mIK9ce6a8Wpf/U+lBOpgILk
      /dj761ofEidQ9h4pKltRRjSwl+3quFfiKPG7jv84ha/p1d2aZn91W8ihF
      /3YaPxFwLPaN6pb15HWwfQ== ide@ide-d842acde-31d1-42df-b5ab- 9335e8e99e69-6bcb54dc8d-l5hjl
-
+````
 
 5.  Copy the text output from the cat command (above) and switch to your Bitbucket browser tab and paste the text copied into the key field. Name your key Local Development
 
@@ -332,7 +348,7 @@ Note you can use the same API Key and Secret as your did for your Cloud IDE if y
 
 6.  Clone the project repository into your Ubuntu environment using the commands. Note the first command is only needed once and is used to keep your local environments segregated from the rest of the files in your home directory. Note the directory created in line 2 can be any name and it is possible to have more than one local environments in different directories as long as only one is operating at a time. Also if you run into errors during the git clone step (line 4) and you usually connect via the project VPN, you might find those errors eliminated by disconnecting from the VPN and accessing Bitbucket directly.
 
-
+````
     $ mkdir \~/drupalsites
     $ mkdir \~/drupalsites/project-drupal
     $ cd \~/drupalsites/project-drupal
@@ -344,17 +360,19 @@ Note you can use the same API Key and Secret as your did for your Cloud IDE if y
     remote: Counting objects: 6409, done.
     remote: Compressing objects: 100% (2124/2124), done. remote: Total 6409 (delta 3194), reused 6172 (delta 2999)
     Receiving objects: 100% (6409/6409), 3.52 MiB | 15.25 MiB/s, done. Resolving deltas: 100% (3194/3194), done.
+````
 
 7.  Switch to the develop branch of the project repository using the command
 
-
+````
     $ git checkout develop
     Branch 'develop' set up to track remote branch 'develop' from 'origin'.
     Switched to a new branch 'develop'
+````
 
 8.  Use composer to install the repository dependencies. The repository is compatible with Composer V2, which is significantly faster, and takes a lot less memory, than Composer V1. To use Composer V2 use the command “composer”. Composer V1 is not available in local as installed.
 
-
+````
     $ composer install
     Gathering patches for root package.
     Removing package drupal/core so that it can be re-installed and re- patched
@@ -372,25 +390,29 @@ Note you can use the same API Key and Secret as your did for your Cloud IDE if y
     Package doctrine/reflection is abandoned, you should avoid using it. Use roave/better-reflection instead.
     Generating autoload files
     45 packages you are using are looking for funding. Use the \`composer fund\` command to find out more\!
+````
 
 9.  Make sure the BLT executable path installed during composer install is available from the command line by
 
-
+````
     $ source \~/.bashrc
+````
 
 10. Set up the git hooks on the WSL2 Ubuntu environment with the command blt blt:init:git-hooks
 
-
+````
     $ blt blt:init:git-hooks
+````
 
 11. Create private files directory for local
 
-
+````
     $ mkdir -p files-private/default
+````
 
 12. Start DDEV (note the first time you use DDEV it will download a lot of files and images)
 
-
+````
     $ ddev start
     Starting project...
     Building ddev-ssh-agent
@@ -405,32 +427,36 @@ Note you can use the same API Key and Secret as your did for your Cloud IDE if y
     Existing settings.php file includes settings.ddev.php Successfully started project
     Project can be reached at https://project.ddev.site https://127. 0.0.1:49253
     Once you start DDEV, all BLT and Drush commands should be executed inside the DDEV Docker containers by prefixing the command (s) with ddev. For example instead of `drush cr` you would use `ddev drush cr`
+````
 
 If you get an error starting DDEV (e.g. a message about not being able to start the Solr service), try starting DDEV using a restart command:
  
-
+````
     $ ddev restart
- 
+````
+
 If you see the message “ssh-agent container is running: If you want to add authentication to the ssh-agent container, run 'ddev auth ssh' to enable your keys.”, make sure you run
  
-
+````
     $ ddev auth ssh
+````
 
 Otherwise when you do any of the following drupal:sync tasks you will get an SSH authorization error.
 
 1.  Before pulling the database and files from Acquia Cloud using the `blt drupal:sync` command, pull the site’s public and private files. The private files contain the Smart IP database to avoid warnings that look like errors about private://smart\_ip/GeoIP2-Country.mmdb being missing. The public files have some Cohesion
 
-
+````
     $ ddev blt drupal:sync:private-files 
     [Acquia\Blt\Robo\Tasks\DrushTask\] Running /home/ide/project/vendor/bin/drush rsync '@project.dev:%private/' /home/ide/project/files- private/default --exclude-paths='styles:css:js' --no-interaction -- ansi in /home/ide/project/docroot
     [Acquia\Blt\Robo\Tasks\DrushTask] Done in 3.568s
     $ ddev blt drupal:sync:public-files
     [Acquia\Blt\Robo\Tasks\DrushTask] Running /home/ide/project/vendor/bin/drush rsync '@project.dev:%files/' /home/ide/project/docroot /sites/default/files --exclude-paths='styles:css:js' --no- interaction --ansi in /home/ide/project/docroot
     [Acquia\Blt\Robo\Tasks\DrushTask] Done in 12.031s
+````
 
 2.  Pull the database and files from Acquia Cloud using the `blt drupal:sync` command
 
-
+````
     $ ddev blt drupal:sync
     > source:build:composer
     Gathering patches for root package.
@@ -565,6 +591,7 @@ Otherwise when you do any of the following drupal:sync tasks you will get an SSH
     > drupal:sync:private-files
     [Acquia\Blt\Robo\Tasks\DrushTask] Running /var/www/html/vendor/bin/drush rsync '@project.dev:%private/' /var/www/html/files-private/default --exclude-paths='styles:css:js' --no-interaction --ansi in /var/www/html/docroot
     [Acquia\Blt\Robo\Tasks\DrushTask] Done in 2.637s
+````
 
 3.  If you get below screen when the URL is hit, this means that the Shield is enabled. Enter the user name and password your development team has configured for Shield.
 
@@ -572,9 +599,10 @@ Otherwise when you do any of the following drupal:sync tasks you will get an SSH
 
 4.  Log into the website using the command “drush uli --name=\<user\_name\>”. Note that “drush uli”, which would normally log you into your site as user 1 won’t work since user 1 has been disabled. Normally that command would open the browser but not all browsers allow that, if it doesn’t (e.g. Chrome), then copy the url output and copy it into your browser address bar
 
-
+````
     $ ddev drush uli --name=<user name>
     https://d842acde-31d1-42df-b5ab-9335e8e99e69.web.ahdev.cloud/user/reset/1/1607564883/TXjUUFRop3yyVPacBdTj6DuZAgrNEB3qOLNVSvgM3bM/login
+````
 
 5.  When you are logged in using the one time link above, change your password to something you can remember
 
@@ -588,9 +616,9 @@ Otherwise when you do any of the following drupal:sync tasks you will get an SSH
 
 Before you close your Ubuntu terminal window, make sure you power down DDEV. Failure to power down DDEV before closing Ubuntu might result in your DDEV environment getting scrambled with unpredictable results.
 
-
+````
     $ ddev poweroff
-
+````
 
 <div class="notice">
 
@@ -600,9 +628,9 @@ Before you close your Ubuntu terminal window, make sure you power down DDEV. Fai
 
 When working locally, remember to start DDEV first so the environment components (e.g. web server, database server) are operating using the command
 
-
+````
     $ ddev start
-
+````
 
 ### Possible Errors
 

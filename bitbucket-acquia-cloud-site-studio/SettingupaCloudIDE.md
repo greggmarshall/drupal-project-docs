@@ -12,11 +12,13 @@
 
 Here’s an example output:
 
+````
     $ acli auth:login
     You will need a Cloud platform API token from https://cloud.acquia.com/a/profile/tokens
     Do you want to open this page to generate a token now? y Please enter your API Key: \<ENTER API KEY HERE\>
     Please enter your API Secret: \<ENTER API SECRET HERE\> 
     Saved credentials to /home/\<user\>/.acquia/cloud\_api.conf
+````
 
 #### If you get a "cURL error 60: SSL certificate problem: unable to get local issuer certificate..." error
 
@@ -26,9 +28,10 @@ Download the latest cacert.pem from [<span class="underline">https://curl.haxx.s
 
 1.  Add the following line to php.ini: (if this is shared hosting and you don't have access to php.ini then you could add this to .user.ini in public\_html).
 
-
+````
     curl.cainfo="C:\\users\\\<your username\>.ssh\\cacert.pem"
- 
+````
+
 **Make sure you enclose the path within double quotation marks\!\!\!**
  
 It is important to note that this applies to the system sending the CURL request, and NOT the server receiving the request.
@@ -36,12 +39,12 @@ It is important to note that this applies to the system sending the CURL request
 ## Create and Configure Your Cloud IDE
  
 List the Cloud IDE’s already defined using:
-
+````
     $ acli ide:list
-
+````
 The list will look like
 
-
+````
     $ acli ide:list
     Please select a Cloud Platform application: [0] Project Company, Inc.
     > 0
@@ -60,22 +63,27 @@ The list will look like
     klmnopqr (jklmno_pqrstuvwx@project.com)
     IDE URL: https://93d0097-90c7-4fa9-a1c2-b609f176c537.ide.ahdev.cloud Web URL: https://93d0097-90c7-4fa9-a1c2-b609f176c537.web.ahdev.cloud
     =======================================================================
+````
 
 ## Deleting an IDE
  
  If your IDE is already there and you want to delete it, the IDE alias is shown next to the person’s email address and above the IDE URL. As an example, the alias of the second IDE in the above list is “def\_ide”. Since IDE aliases can contain spaces, we recommend you enclose the IDE alias in quotes.
  
+````
     $ acli ide:delete "alias name"
- 
+````
+
  Note that when you delete an IDE, **ALL** settings are deleted with it. Deleting an IDE and recreating it is a way to reset a Cloud IDE. You will need to wait 3-5 minutes after deleting an IDE before recreating it, otherwise you might get an error there are no available Cloud IDEs.
  
 ## Create your Cloud IDE and give it a label (or alias)
- 
+
+````
     $ acli ide:create
     Please select a Cloud Platform application: [0] Project Company, Inc.
     > 0
     Please enter a label for your Cloud IDE:
     >alias_name
+````
 
 Alternatively you can create your Cloud IDE from the Acquia Cloud UI.  Login into https://acquia.com and navigate to the environments page for the application you want to create the Cloud IDE in (every application has its own Cloud IDEs and a Cloud IDE from one application can't be used to work on another application).  Click the down arrow in the Actions button and select Create A Cloud IDE.
 
@@ -90,7 +98,7 @@ Then give your Cloud IDE a name and click Create.  It takes a few minutes to pro
 
 1.  From the command line on your local computer, run the following command to open your IDE and select the IDE you wish to open:
 
-
+````
     $ acli ide:open
     Please select a Cloud Platform application: [0] Project Company, Inc.
     > 0
@@ -109,6 +117,7 @@ Then give your Cloud IDE a name and click Create.  It takes a few minutes to pro
     Your Drupal Site URL: https://d84acde-31d1-42df-b5ab-933e8e99e69. web.ahdev.cloud
     Opening your IDE in browser...
     [warning] Could not find a browser on your local machine.
+````
 
 If you see a warning like line 21 above, you will need to manually copy the IDE URL shown and paste it into your browser address bar.
 
@@ -125,7 +134,8 @@ If you see a warning like line 21 above, you will need to manually copy the IDE 
  ![](./media/kpdXwB/image8.jpg)
  
 Clicking the CONFIGURE IDE button will open the Cloud IDE terminal with the command “acli ide:wizard:ssh-key:create-upload” which will walk you through entering your API Key and API secret (you can use the API Key and API secret you generated to set up your local acli). The wizard will automatically create your SSH key and upload it to Acquia.
- 
+
+````
     $ acli ide:wizard:ssh-key:create-upload
     We strive to give you the best tools for development.
     You can really help us improve by sharing anonymous performance and usage data.
@@ -143,10 +153,11 @@ Clicking the CONFIGURE IDE button will open the Cloud IDE terminal with the comm
     Waiting for the key to become available on the Cloud Platform 
     Your SSH key is ready for use\!
     delete\_me:\~/project $
+````
 
 1.  While in the terminal set your PHP memory limit to unlimited by moving to the php configuration directory and edit the custom.ini file, you can use nano or vi, add **memory\_limit=-1** and save the file :
 
-
+````
     $ cd /home/ide/configs/php
     $ nano custom.ini
     $ cat custom.ini
@@ -156,7 +167,8 @@ Clicking the CONFIGURE IDE button will open the Cloud IDE terminal with the comm
     $ git config --global user.email "your project email address"
     $ git config --global user.name "your full name"
     $ git config --global pull.rebase false
- 
+````
+
 ## Configure Bitbucket with Cloud IDE SSH Keys
 
 1.  Navigate to <http://bitbucket.org> (or your alternative way you access Bitbucket) and log in.
@@ -171,7 +183,7 @@ Clicking the CONFIGURE IDE button will open the Cloud IDE terminal with the comm
 
 4.  Switch to your Acquia Cloud IDE browser tab and in the terminal type
 
-
+````
     ls -la \~/.ssh 
     total 24
     drwxr-xr-x 2 ide ide 4096 Dec 9 19:33 .
@@ -195,6 +207,7 @@ Clicking the CONFIGURE IDE button will open the Cloud IDE terminal with the comm
     dj761ofEidQ9h4pKltRRjSwl+3quFfiKPG7jv84hap1d2aZn91W8ihF
     3YaPxFwLPaN6pb15HWwfQ== ide@ide-d84acde-31d1-42df-b5ab- 9335e899e69-6bcb5dc8d-l5hjl
     $
+````
 
 5.  Copy the text output from the cat command (line 10 above) and switch to your Bitbucket browser tab and paste the text copied into the key field. Name your key Acquia Cloud IDE
 
@@ -202,7 +215,7 @@ Clicking the CONFIGURE IDE button will open the Cloud IDE terminal with the comm
 
 6.  Clone the project repository into your Acquia Cloud IDE using the command
 
-
+````
     $ git clone git@bitbucket.org:project/project.git . 
     Cloning into '.'...
     The authenticity of host 'bitbucket.org (118.25.93.2)' can't be established.
@@ -214,17 +227,19 @@ Clicking the CONFIGURE IDE button will open the Cloud IDE terminal with the comm
     remote: Total 6409 (delta 3194), reused 6172 (delta 2999)
     Receiving objects: 100% (6409/6409), 3.52 MiB | 15.25 MiB/s, done. 
     Resolving deltas: 100% (3194/3194), done.
+````
 
 7.  Switch to the develop branch of the project repository using the command
 
-
+````
     $ git checkout develop
     Branch 'develop' set up to track remote branch 'develop' from 'origin'.
     Switched to a new branch 'develop'
+````
 
 8.  Use composer to install the repository dependencies. The repository is compatible with Composer V2, which is significantly faster, and takes a lot less memory, than Composer V1. Composer V2 is now standard on Acquia Cloud IDE
 
-
+````
     $ composer install
     Gathering patches for root package.
     Removing package drupal/core so that it can be re-installed and re-patched.
@@ -242,22 +257,26 @@ Clicking the CONFIGURE IDE button will open the Cloud IDE terminal with the comm
     Package doctrine/reflection is abandoned, you should avoid using it. Use roave/better-reflection instead.
     Generating autoload files
     45 packages you are using are looking for funding. Use the `composer fund` command to find out more\!
+````
 
 9.  Set up BLT settings on the Cloud IDE with the command `blt blt:init:settings`
 
-
+````
     $ blt blt:init:settings
     Could not find blt/example.local.blt.yml/. Create and commit this file if you'd like to automatically generate blt/local.blt.yml/ based on this template.
     Generating hash salt...
     [File\Write] Writing to /home/ide/project/salt.txt.
+````
 
 10. Set up the git hooks on the Cloud IDE with the command `blt blt:init:git-hooks`
 
-
+````
     $ blt blt:init:git-hooks
+````
 
 11. Pull the database and files from Acquia Cloud, selecting the Stage environment
 
+````
     $ acli pull --no-code --no-files
     Using Cloud Application Project Company, Inc.
     Choose a Cloud Platform environment: 
@@ -268,22 +287,26 @@ Clicking the CONFIGURE IDE button will open the Cloud IDE terminal with the comm
     > 0
     Downloading Drupal database copy from the Cloud Platform Installing Composer dependencies
     Clearing Drupal caches via Drush Sanitizing database via Drush
+````
 
 12. Update local configuration files using the command (not all projects include this step)
 
-
+````
     $ ./scripts/ide-setup.sh
+````
 
 13. Update the database and download the files to the latest configuration export using the command (note the database copy in step 11 is more to allow this step to run than the copy):
 
-
+````
     blt drupal:sync
+````
 
 14. Log into the website using the command `drush uli --name=<user_name>`. Note that `drush uli`”, which would normally log you into your site as user 1 won’t work since user 1 has been disabled. Normally that command would open the browser but not all browsers allow that, if it doesn’t (e.g. Chrome), then copy the url output and copy it into your browser address bar
 
-
+````
     $ drush uli --name=<user name>
     https://d84acde-31d1-42df-b5ab-9335ee99e69.web.ahdev.cloud/user/reset/1/1607564883/TXjUURop3yyVPacBdj6DuZAgNEB3qOLNVSvgM3bM/login
+````
 
 15. If you get below screen when the URL is hit, this means that the Shield is enabled. Enter the user name and password your development team has configured for Shield.
 

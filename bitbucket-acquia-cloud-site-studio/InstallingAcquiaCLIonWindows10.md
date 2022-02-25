@@ -36,9 +36,10 @@ Use `php -i` to determine where your PHP executable is located, which is usually
 
 2.  In the `C:\Users\<your username\>\AppData\Roaming\PHP` directory, create a file acli.bat that contains:
 
-
+````
     @ECHO OFF
     php "%\~dp0acli.phar" %\*
+````
 
 3.  Add the folder to your path environment variable if not already in the path
 
