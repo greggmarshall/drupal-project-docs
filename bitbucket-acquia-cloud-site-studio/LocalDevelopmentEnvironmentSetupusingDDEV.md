@@ -158,7 +158,9 @@ The DDEV documentation is at <https://ddev.readthedocs.io/en/stable/>
 * **NodeJS**
  
 ````
-    $ sudo apt install nodejs sudo apt install npm node -v
+    $ sudo apt install nodejs
+    $ sudo apt install npm
+    $ node -v
     $ npm -v
 ````
 
