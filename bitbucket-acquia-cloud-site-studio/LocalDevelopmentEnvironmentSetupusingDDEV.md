@@ -282,10 +282,10 @@ Note you can use the same API Key and Secret as your did for your Cloud IDE if y
  Then about line 4 insert the following
  
 ````
-     # get current git branch if inside a git repository 
-     parse_git_branch() {
-       git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/''
-     }
+    # get current git branch if inside a git repository 
+    parse_git_branch() {
+        git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+    }
  ````
 
  After saving the file, you can load the results using
